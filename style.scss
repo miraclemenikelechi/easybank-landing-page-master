@@ -1,0 +1,403 @@
+@mixin breakpoint-max($bp: 0) {
+	@media (max-width: $bp) {
+		@content
+	}
+}
+
+;
+
+@mixin flex($align:center, $direction:row, $justify:center) {
+	display: flex;
+	align-items: $align;
+	justify-content: $justify;
+	flex-direction: $direction;
+}
+
+;
+
+@mixin equal($h-w:0) {
+	height: $h-w;
+	width: $h-w;
+}
+
+;
+
+$Blue: hsl(233, 26%, 24%);
+$Green: hsl(136, 65%, 51%);
+$Cyan: hsl(192, 70%, 51%);
+
+$Very: hsl(233, 8%, 62%);
+$Grayish: hsl(220, 16%, 96%);
+$Light: hsl(0, 0%, 98%);
+$White: hsl(0, 0%, 100%);
+
+* {
+	margin: 0%;
+	padding: 0%;
+	box-sizing: border-box;
+	// background: rgba(50, 75, 220, 0.1) !important;
+}
+
+html {
+	scroll-behavior: smooth;
+	font-size: calc(100vw / 1440 * 16);
+	font-family: 'Public Sans',
+		sans-serif;
+
+	body {
+		font-size: 1.125rem;
+
+		&::-webkit-scrollbar {
+			width: 0px;
+			background: transparent;
+		}
+
+		.container {
+			overflow: hidden;
+
+			img {
+				max-width: 100%;
+			}
+
+			a {
+				color: inherit;
+				text-decoration: none;
+				@include flex;
+				@include equal(100%);
+			}
+
+			ul {
+				list-style-type: none;
+			}
+
+			>section {
+				&.header {
+					@include flex;
+					height: 100px;
+					width: 100%;
+					background-color: white;
+					position: fixed;
+					top: 0;
+					z-index: 5;
+
+					nav {
+						@include flex($justify:space-between);
+						width: 100%;
+						padding-inline: 10%;
+
+						.logo {
+							height: 70px;
+							width: 200px;
+							@include flex;
+
+							img {
+								zoom: 200%;
+							}
+						}
+
+						.navigation {
+							@include flex;
+							gap: 50px;
+
+							li {
+								a {
+									color: $Very;
+									font-weight: 300;
+									font-size: 1rem;
+								}
+							}
+						}
+
+						.cta {
+							height: 60px;
+							width: 250px;
+							@include flex;
+
+							button {
+								@include equal(100%);
+								border-radius: 50px;
+								border: none;
+								outline: none;
+								background: linear-gradient(to right,
+										hwb(140 19% 18%) 20%,
+										hwb(189 17% 18%)) 90%;
+
+								a {
+									color: white;
+									font-size: 1.15rem;
+									font-weight: 700;
+								}
+							}
+						}
+					}
+				}
+
+				&.hero {
+					@include flex($justify:space-between);
+					height: 100dvh;
+					background-color: $Light;
+
+					.left {
+						padding-inline-start: 10%;
+						width: 50%;
+						@include flex($direction:column, $align:flex-start);
+						gap: 50px;
+
+						h1 {
+							font-weight: 400;
+							color: $Blue;
+							font-size: 75px;
+						}
+
+						p {
+							width: 80%;
+							color: $Very;
+						}
+
+						button {
+							height: 70px;
+							width: 250px;
+							@include flex;
+							border-radius: 50px;
+							border: none;
+							outline: none;
+							background: linear-gradient(to right,
+									hwb(140 19% 18%) 0%,
+									hwb(189 17% 18%)) 90%;
+
+							a {
+								color: white;
+								font-size: 1.15rem;
+								font-weight: 700;
+							}
+						}
+					}
+
+					.right {
+						background-image: url("/bg-intro-desktop.svg");
+						background-repeat: no-repeat;
+						height: 100%;
+						width: 50%;
+						@include flex();
+						position: relative;
+
+						img {
+							position: absolute;
+							zoom: 150%;
+							right: -100px;
+							top: 0px;
+						}
+					}
+				}
+
+				&.main {
+					background-color: $Grayish;
+					height: 80dvh;
+					padding-inline-start: 10%;
+					@include flex($direction:column, $align:flex-start);
+					gap: 100px;
+
+					.top {
+						@include flex($direction:column, $align:flex-start);
+						gap: 50px;
+
+						h2 {
+							font-weight: 400;
+							color: $Blue;
+							font-size: 2.5rem;
+						}
+
+						p {
+							font-weight: 300;
+							color: $Very;
+							width: 70%;
+						}
+					}
+
+					.bottom {
+						@include flex($justify:space-between);
+
+						section {
+							@include flex($direction:column, $align:flex-start);
+							gap: 32px;
+
+							span {
+								@include equal(100px);
+								@include flex;
+							}
+
+							h3 {
+								color: $Blue;
+								font-weight: 400;
+								font-size: 28px;
+							}
+
+							p {
+								color: $Very;
+								font-weight: 300;
+								font-size: 18px;
+								width: 70%;
+							}
+						}
+					}
+				}
+
+				&.articles {
+					height: 80dvh;
+					background-color: $Light;
+					padding-inline: 10%;
+					@include flex($direction:column, $align:flex-start);
+					gap: 50px;
+
+					>div {
+						&.top {
+							h2 {
+								color: $Blue;
+								font-weight: 400;
+								font-size: 2.5rem;
+							}
+						}
+
+						&.bottom {
+							@include flex($justify:space-evenly);
+							gap: 35px;
+
+							section {
+								@include flex($direction:column);
+								border-radius: 10px;
+								overflow: hidden;
+								background-color: white;
+
+								.top {
+									height: 250px;
+									width: 100%;
+
+									img {
+										object-fit: cover;
+										@include equal(100%)
+									}
+								}
+
+								.bottom {
+									@include flex($direction:column, $align:flex-start);
+									padding: 40px 30px 30px 30px;
+									gap: 20px;
+
+									span {
+										color: $Very;
+										font-size: .75rem;
+										font-weight: 300;
+									}
+
+									h4 {
+										font-weight: 400;
+										color: $Blue;
+										font-size: 1.25rem;
+									}
+
+									p {
+										color: $Very;
+										font-weight: 300;
+										font-size: .8125rem;
+									}
+								}
+							}
+						}
+					}
+				}
+
+				&.footer {
+					background-color: $Blue;
+					@include flex($justify:space-between);
+					padding: 3% 10%;
+
+					>div {
+						@include flex;
+
+						&.left {
+							flex-direction: column;
+							align-items: flex-start;
+							gap: 40px;
+							color: white;
+
+							.logo {
+								height: 50px;
+								width: 200px;
+								@include flex($align:flex-start);
+
+								svg {
+									zoom: 140%;
+								}
+							}
+
+							ul {
+								@include flex($justify:space-between);
+								gap: 15px;
+								width: 100%;
+
+								li {
+									@include equal(32px);
+									@include flex;
+
+									svg {
+										zoom: 150%;
+									}
+								}
+							}
+						}
+
+						&.center {
+							gap: 150px;
+							margin-right: auto;
+							margin-left: 150px;
+							color: white;
+
+							ul {
+								@include flex($align:flex-start, $direction:column);
+								gap: 20px;
+
+								li {
+									font-size: .9375rem;
+								}
+							}
+						}
+
+						&.right {
+							flex-direction: column;
+							align-items: flex-end;
+							gap: 35px;
+
+							button {
+								height: 60px;
+								width: 250px;
+								@include flex;
+								border-radius: 50px;
+								border: none;
+								outline: none;
+								background: linear-gradient(to right,
+										hwb(140 19% 18%) 0%,
+										hwb(189 17% 18%)) 90%;
+
+								a {
+									color: white;
+									font-size: 1rem;
+									font-weight: 700;
+								}
+							}
+
+							p {
+								color: $Very;
+								font-weight: 300;
+								font-size: 1.12rem;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		.attribution {
+			background-color: $Blue;
+		}
+	}
+}

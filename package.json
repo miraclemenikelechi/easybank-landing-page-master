@@ -1,0 +1,20 @@
+{
+  "name": "easybank-landing-page-master",
+  "private": true,
+  "version": "0.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "browserslist": [
+    "cover 99.5%"
+  ],
+  "devDependencies": {
+    "vite": "^4.3.9"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.14",
+    "sass": "^1.63.6"
+  }
+}
